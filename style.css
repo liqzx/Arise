@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom, #0a0f1b, #101828);
+  color: #ffffff;
+  min-height: 100vh;
+  padding: 1rem;
+  animation: fadeIn 1.2s ease-in;
+}
+
+h1, h2, h3 {
+  color: #00bfff;
+  text-shadow: 0 0 6px #00bfff80;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.workout-card {
+  background-color: #111c2e;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 0 20px #00bfff30;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.workout-card:hover {
+  transform: translateY(-5px);
+}
+
+.workout-card ul {
+  list-style: none;
+  line-height: 1.8;
+  margin-top: 0.8rem;
+}
+
+.class-info {
+  background-color: #0f1b2d;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0 15px #00bfff30;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.85rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
