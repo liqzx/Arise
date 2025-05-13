@@ -1,11 +1,17 @@
-let xp = 0;
-const xpDisplay = document.getElementById("xp");
+function saveProgress() {
+  console.log("Progress saved (placeholder).");
 
-function gainXP(amount) {
-  xp += amount;
-  xpDisplay.textContent = xp;
+
+  let xpElement = document.getElementById("xp");
+  let currentXP = parseInt(xpElement.textContent, 10);
+  let newXP = currentXP + 20;
+
+
+  if (newXP >= 100) {
+    newXP -= 100;
+    alert("Level Up!");
+
+  }
+
+  xpElement.textContent = newXP;
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  gainXP(10);
-});
