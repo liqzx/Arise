@@ -1,26 +1,141 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#0a0f1b" />
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
-  <title>LEVELING: Fitness</title>
-  <script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-  }
-</script>
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <title>LEVELING:Fitness</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #0a0f1b, #111827);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .app {
+      max-width: 600px;
+      margin: auto;
+      padding: 2rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .app-header h1 {
+      font-size: 2rem;
+      color: #00b4ff;
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: glow 2s infinite alternate;
+    }
+
+    .app-header h1 span {
+      color: #38bdf8;
+    }
+
+    .workout-card {
+      background: rgba(17, 24, 39, 0.8);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .workout-card:hover {
+      transform: scale(1.02);
+    }
+
+    .workout-card h2 {
+      color: #38bdf8;
+      margin-bottom: 1rem;
+    }
+
+    .workout-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .workout-card li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .workout-card li::before {
+      content: '➤';
+      position: absolute;
+      left: 0;
+      color: #00b4ff;
+    }
+
+    .class-info {
+      text-align: center;
+      background: rgba(17, 24, 39, 0.8);
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 0 15px rgba(0, 180, 255, 0.2);
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .class-info h3 span {
+      color: #22d3ee;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #94a3b8;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff; }
+      to { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
+    }
+  </style>
 </head>
 <body>
   <div class="app">
-    <h1 class="title">LEVELING: Fitness</h1>
-    <div id="workout" class="workout-box">
-      <p>Tap the button to get your daily workout.</p>
-      <button onclick="generateWorkout()">Start Workout</button>
-      <div id="output"></div>
-    </div>
+    <header class="app-header">
+      <h1>LEVELING<span>:Fitness</span></h1>
+    </header>
+
+    <main>
+      <section class="workout-card">
+        <h2>Today's Quest</h2>
+        <ul>
+          <li>Push-ups × 30</li>
+          <li>Hollow Body Hold × 3 sets</li>
+          <li>Flutter Kicks × 3 sets</li>
+          <li>Dead Hangs × 3 sets</li>
+        </ul>
+      </section>
+
+      <section class="class-info">
+        <h3>Your Class: <span id="userClass">Warrior</span></h3>
+        <p>Level 1 | XP: <span id="xp">0</span>/100</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>LEVELING:Fitness — Inspired by Solo Leveling</p>
+    </footer>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
