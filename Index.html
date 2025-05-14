@@ -3,139 +3,269 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0a0f1b" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="icons/icon-192.png" type="image/png">
   <title>LEVELING:Fitness</title>
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(145deg, #0a0f1b, #111827);
-      color: #fff;
-      overflow-x: hidden;
     }
 
-    .app {
-      max-width: 600px;
-      margin: auto;
-      padding: 2rem;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    .app-header h1 {
-      font-size: 2rem;
-      color: #00b4ff;
-      text-align: center;
-      margin-bottom: 2rem;
-      animation: glow 2s infinite alternate;
-    }
-
-    .app-header h1 span {
-      color: #38bdf8;
-    }
-
-    .workout-card {
-      background: rgba(17, 24, 39, 0.8);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
-      transition: transform 0.3s;
-    }
-
-    .workout-card:hover {
-      transform: scale(1.02);
-    }
-
-    .workout-card h2 {
-      color: #38bdf8;
-      margin-bottom: 1rem;
-    }
-
-    .workout-card ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .workout-card li {
-      margin-bottom: 0.5rem;
-      position: relative;
-      padding-left: 1.5rem;
-    }
-
-    .workout-card li::before {
-      content: '➤';
-      position: absolute;
-      left: 0;
-      color: #00b4ff;
-    }
-
-    .class-info {
-      text-align: center;
-      background: rgba(17, 24, 39, 0.8);
-      border-radius: 1rem;
+    body {
+      background: #000000;
+      color: #d6eaff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 1rem;
-      box-shadow: 0 0 15px rgba(0, 180, 255, 0.2);
-      animation: fadeInUp 1s ease-in-out;
+      padding-bottom: 100px;
     }
 
-    .class-info h3 span {
-      color: #22d3ee;
-    }
-
-    footer {
-      margin-top: 3rem;
+    .status-box {
+      background: rgba(0, 0, 30, 0.9);
+      border: 1px solid #60efff55;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: 0 0 15px #60efff20;
       text-align: center;
-      font-size: 0.875rem;
-      color: #94a3b8;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .status-box h1 {
+      font-size: 3rem;
+      color: #9be6ff;
+      text-shadow: 0 0 10px #60efff90;
+      margin-bottom: 0.2rem;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .status-box h2 {
+      font-size: 1rem;
+      color: #a3bffa;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff; }
-      to { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
+    .rank-display {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #ffe89c;
+      text-shadow: 0 0 8px #ffc94b;
+      transition: color 0.5s, text-shadow 0.5s;
+    }
+
+    .rank-up {
+      color: #ff7f50 !important;
+      text-shadow: 0 0 12px #ff7f50, 0 0 20px #ffae73 !important;
+      transition: color 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+    }
+
+    .status-info {
+      border-top: 1px solid #60efff40;
+      border-bottom: 1px solid #60efff40;
+      padding: 0.75rem 0;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #ccd6f6;
+      text-shadow: 0 0 4px #60efff40;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      color: #e0f7ff;
+    }
+
+    .stats-grid div {
+      background: rgba(14, 21, 37, 0.7);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px #60efff20;
+    }
+
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 20, 0.85);
+      border-top: 1px solid #60efff33;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.75rem 0;
+      box-shadow: 0 -2px 10px #60efff10;
+    }
+
+    .nav-bar i {
+      font-size: 1.4rem;
+      color: #b6d8ff;
+      filter: drop-shadow(0 0 4px #60efff60);
+    }
+
+    .ai-box {
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .workout-box {
+      background: rgba(0, 10, 20, 0.85);
+      padding: 1rem;
+      border: 1px solid #60efff33;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #60efff22;
+      margin-bottom: 1.5rem;
+    }
+
+    .workout-box h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #a9eaff;
+      text-shadow: 0 0 6px #60efff44;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: none;
+      background: #111a2b;
+      color: #ffffff;
+      box-shadow: inset 0 0 5px #60efff55;
+    }
+
+    .chat-input button {
+      padding: 0.6rem 1rem;
+      background: #60efff33;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .chat-input button:hover {
+      background: #60efff66;
+    }
+
+    .xp-bar {
+      height: 12px;
+      background: #122544;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: inset 0 0 5px #60efff33;
+      margin-top: 1rem;
+    }
+
+    .xp-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #60efff, #9be6ff);
+      width: 60%;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .xp-label {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+      color: #a9eaff;
     }
   </style>
 </head>
 <body>
-  <div class="app">
-    <header class="app-header">
-      <h1>LEVELING<span>:Fitness</span></h1>
-    </header>
-
-    <main>
-      <section class="workout-card">
-        <h2>Today's Quest</h2>
-        <ul>
-          <li>Push-ups × 30</li>
-          <li>Hollow Body Hold × 3 sets</li>
-          <li>Flutter Kicks × 3 sets</li>
-          <li>Dead Hangs × 3 sets</li>
-        </ul>
-      </section>
-
-      <section class="class-info">
-        <h3>Your Class: <span id="userClass">Warrior</span></h3>
-        <p>Level 1 | XP: <span id="xp">0</span>/100</p>
-      </section>
-    </main>
-
-    <footer>
-      <p>LEVELING:Fitness — Inspired by Solo Leveling</p>
-    </footer>
+  <div class="status-box">
+    <h1>15</h1>
+    <h2>Level</h2>
+    <div class="rank-display">Rank: <span id="rankText">D</span></div>
+    <div class="status-info">
+      <div>JOB: Human</div>
+      <div>TITLE: HR</div>
+      <div>Low human strength.</div>
+    </div>
+    <div class="stats-grid">
+      <div>STR: 17</div>
+      <div>INT: 11</div>
+      <div>AGI: 12</div>
+      <div>VIT: 16</div>
+    </div>
+    <div class="xp-bar">
+      <div class="xp-bar-fill"></div>
+    </div>
+    <div class="xp-label">XP: 120 / 200</div>
   </div>
 
-  <script src="script.js"></script>
+  <div class="ai-box">
+    <div class="workout-box">
+      <h3>Today's Workout</h3>
+      <ul>
+        <li>Warm-up: 1 min jumping jacks + dynamic stretching</li>
+        <li>Push-ups: 3 sets of 12</li>
+        <li>Pull-ups: 3 sets to failure</li>
+        <li>Hollow body hold: 3 x 20 sec</li>
+        <li>Pistol squats: 3 x 6 each leg</li>
+        <li>Finisher: Wall handstand hold (30 sec x 3)</li>
+      </ul>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Ask your workout AI anything...">
+      <button onclick="generateResponse()">Send</button>
+    </div>
+  </div>
+
+  <div class="nav-bar">
+    <i class="ri-home-4-line"></i>
+    <i class="ri-list-unordered"></i>
+    <i class="ri-apps-line"></i>
+    <i class="ri-user-line"></i>
+  </div>
+
+  <script>
+    const level = 15;
+    const rankText = document.getElementById("rankText");
+
+    function getRank(level) {
+      if (level < 5) return "E";
+      if (level < 10) return "D";
+      if (level < 20) return "C";
+      if (level < 30) return "B";
+      if (level < 40) return "A";
+      if (level < 50) return "S";
+      return "SS";
+    }
+
+    function updateRank() {
+      const newRank = getRank(level);
+      const currentRank = rankText.textContent;
+
+      if (newRank !== currentRank) {
+        rankText.classList.add("rank-up");
+        rankText.textContent = newRank;
+        setTimeout(() => {
+          rankText.classList.remove("rank-up");
+        }, 1000);
+      }
+    }
+
+    function generateResponse() {
+      const input = document.getElementById("chatInput").value.trim();
+      if (!input) return;
+      alert(`(AI): You asked: "${input}"`);
+    }
+
+    updateRank();
+  </script>
 </body>
 </html>
